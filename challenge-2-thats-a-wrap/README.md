@@ -11,7 +11,7 @@ Your program will prove its validity by outputting the number of lines which are
 
 The winning solution (using any language) will be one which does not use any built-in word-wrapping algorithms, is clean, as efficient as possible and makes good use of the language's features to achieve the correct result.
 
-Example - max. 32 characters per line:
+## Example
 
 `There are many variations of `
 
@@ -28,3 +28,9 @@ Example - max. 32 characters per line:
 `look even slightly believable.`
 
 Answer: 1 line contains 32 characters (`or randomised words which don't `)
+
+## Solution
+
+I could probably do this solution nicer in JavaScript, but, eh, I do enough of that already. Using Rust has the benefit of producing code that's safe, fast, and, in this case, very memory efficient. Since only one pass is made over the text and I used string slices rather than objects, this solution is linear in both time and memory with respect to the size of the text.
+
+It can be ran by either using `cargo run` in this root folder, or by using `rustc` to compile `src/main.rs` directly and then running the generated executable.
