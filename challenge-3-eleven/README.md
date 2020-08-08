@@ -6,4 +6,4 @@ Your task is to create a solution to output the answer to the following mathemat
 The winning solution (using any languages/components) will be the one which is the most ludicrously complicated and most imaginative.
 
 ## Solution [WIP]
-Alexa skill -> blockchain -> neural network
+![High level overview](high-level-overview.png)
