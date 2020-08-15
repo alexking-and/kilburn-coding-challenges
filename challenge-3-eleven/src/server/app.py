@@ -47,5 +47,6 @@ def add(x, y):
     prediction_string = ''.join(list(map(lambda x: CHARS[x], list(prediction.numpy())))).strip()
     return {
         "modelInput": input_string,
-        "prediction": int(prediction_string)
+        "prediction": int(prediction_string),
+        "stringResult": '{},{},{}'.format(x, y, prediction_string)
     }
