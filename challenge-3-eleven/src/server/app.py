@@ -6,7 +6,7 @@ from flask import Flask
 app = Flask(__name__)
 
 # Load model
-MODEL_PATH = './data/model'
+MODEL_PATH = '../data/model'
 model = keras.models.load_model(MODEL_PATH)
 
 # Parameters (must match model)
