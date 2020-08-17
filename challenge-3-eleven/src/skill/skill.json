@@ -32,15 +32,14 @@
       "isAvailableWorldwide": true,
       "locales": {
         "en-GB": {
-          "description": "Sample Full Description",
+          "description": "Add things in an incredibly expensive, almost completely accurate way",
           "examplePhrases": [
-            "Alexa open hello world",
-            "hello",
-            "help"
+            "Alexa open dumb adder",
+            "What is one plus one"
           ],
           "keywords": [],
           "name": "Dumb Adder",
-          "summary": "Sample Short Description"
+          "summary": "Add dumbly"
         }
       },
       "testingInstructions": "Sample Testing Instructions."
