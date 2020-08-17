@@ -5,6 +5,8 @@
 # session persistence, api calls, and more.
 # This sample is built using the handler classes approach in skill builder.
 import logging
+import requests
+import os
 import ask_sdk_core.utils as ask_utils
 
 from ask_sdk_core.skill_builder import SkillBuilder
@@ -17,6 +19,7 @@ from ask_sdk_model import Response
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+API_URL = os.environ["API_URL"]
 
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
@@ -46,7 +49,12 @@ class AddIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> response
         x = ask_utils.get_slot_value(handler_input, "x")
         y = ask_utils.get_slot_value(handler_input, "y")
-        speak_output = "Add handler hit. x " + x + " y " + y
+
+        req_url = "{}/add/{}/{}".format(API_URL, x, y)
+        res = requests.get(req_url)
+        res_json = res.json()        
+
+        speak_output = "The answer is: {}".format(res_json.prediction)
         
         return (
             handler_input.response_builder
