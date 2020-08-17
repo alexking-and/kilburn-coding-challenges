@@ -1,0 +1,56 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "dumb adder",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "HelloWorldIntent",
+          "slots": [],
+          "samples": [
+            "hello",
+            "how are you",
+            "say hi world",
+            "say hi",
+            "hi",
+            "say hello world",
+            "say hello"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AddIntent",
+          "slots": [
+            {
+              "name": "x",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "y",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "what is {x} plus {y}"
+          ]
+        }
+      ],
+      "types": []
+    }
+  },
+  "version": "4"
+}
