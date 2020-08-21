@@ -8,6 +8,6 @@ func main() {
 	fmt.Println("Hello, world.")
 }
 
-func amountToText(amount uint) {
-
+func convertAmount(amount string) string {
+	return ""
 }
