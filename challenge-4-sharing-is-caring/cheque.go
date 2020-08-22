@@ -8,7 +8,11 @@ import (
 var numbersMap map[string]string
 
 func main() {
+	amounts := getAmountsList()
 
+	for _, amount := range amounts {
+		fmt.Printf("%s -> %s\n", amount, convertAmount(amount))
+	}
 }
 
 func convertAmount(amount string) string {
@@ -110,5 +114,30 @@ func populateNumbersMap() {
 		"70": "seventy",
 		"80": "eighty",
 		"90": "ninety",
+	}
+}
+
+func getAmountsList() [20]string {
+	return [...]string{
+		"498129.57",
+		"4888182.56",
+		"98588.95",
+		"833766.69",
+		"4825346.78",
+		"3919567.42",
+		"3251944.97",
+		"3797748.63",
+		"1360840.33",
+		"4350727.99",
+		"4763720.85",
+		"360474.88",
+		"4785680.38",
+		"528522.68",
+		"3659114.41",
+		"1932263.62",
+		"563522.98",
+		"789062.65",
+		"3467796.06",
+		"91826.08",
 	}
 }
