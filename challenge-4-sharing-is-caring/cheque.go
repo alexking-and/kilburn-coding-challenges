@@ -61,9 +61,8 @@ func convertTwoDigitNumber(n string) string {
 
 	if len(tens) > 0 {
 		return fmt.Sprintf("%s %s", tens, units)
-	} else {
-		return units
 	}
+	return units
 }
 
 func convertThreeDigitNumber(n string) string {
@@ -77,9 +76,8 @@ func convertThreeDigitNumber(n string) string {
 
 		if len(rest) > 0 {
 			return fmt.Sprintf("%s hundred %s", hundreds, rest)
-		} else {
-			return fmt.Sprintf("%s hundred", hundreds)
 		}
+		return fmt.Sprintf("%s hundred", hundreds)
 	}
 }
 
