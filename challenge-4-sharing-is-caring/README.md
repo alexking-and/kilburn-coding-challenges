@@ -14,4 +14,4 @@ Additional examples to help build and validate your program can be found [here](
 
 ## Solution
 
-TBD
+Never touched Go before, so I used that. Not much to say about this one really, fairly straightforward.
