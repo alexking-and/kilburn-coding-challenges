@@ -19,3 +19,46 @@ func TestConvertAmount(t *testing.T) {
 		}
 	}
 }
+
+func TestConvertTwoDigitNumber(t *testing.T) {
+	populateNumbersMap()
+
+	cases := []struct {
+		in, out string
+	}{
+		{"0", ""},
+		{"00", ""},
+		{"1", "one"},
+		{"01", "one"},
+		{"11", "eleven"},
+		{"21", "twenty one"},
+	}
+	for _, c := range cases {
+		result := convertTwoDigitNumber(c.in)
+		if result != c.out {
+			t.Errorf("convertTwoDigitNumber(%q) == %q, expected %q", c.in, result, c.out)
+		}
+	}
+}
+
+func TestConvertThreeDigitNumber(t *testing.T) {
+	populateNumbersMap()
+
+	cases := []struct {
+		in, out string
+	}{
+		{"000", ""},
+		{"001", "one"},
+		{"011", "eleven"},
+		{"021", "twenty one"},
+		{"100", "one hundred"},
+		{"101", "one hundred one"},
+		{"121", "one hundred twenty one"},
+	}
+	for _, c := range cases {
+		result := convertThreeDigitNumber(c.in)
+		if result != c.out {
+			t.Errorf("convertThreeDigitNumber(%q) == %q, expected %q", c.in, result, c.out)
+		}
+	}
+}

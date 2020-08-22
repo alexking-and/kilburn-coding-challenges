@@ -47,9 +47,19 @@ func convertTwoDigitNumber(n string) string {
 	if nStr, ok := numbersMap[n]; ok {
 		return nStr
 	}
-	tens := numbersMap[n[:1]+"0"]
+	var tens string
+	if n[:1] == "0" {
+		tens = ""
+	} else {
+		tens = numbersMap[n[:1]+"0"]
+	}
 	units := numbersMap[n[1:2]]
-	return fmt.Sprintf("%s %s", tens, units)
+
+	if len(tens) > 0 {
+		return fmt.Sprintf("%s %s", tens, units)
+	} else {
+		return units
+	}
 }
 
 func convertThreeDigitNumber(n string) string {
@@ -59,7 +69,13 @@ func convertThreeDigitNumber(n string) string {
 		return convertTwoDigitNumber(n[1:])
 	} else {
 		hundreds := numbersMap[n[:1]]
-		return fmt.Sprintf("%s hundred %s", hundreds, convertTwoDigitNumber(n[1:]))
+		rest := convertTwoDigitNumber(n[1:])
+
+		if len(rest) > 0 {
+			return fmt.Sprintf("%s hundred %s", hundreds, rest)
+		} else {
+			return fmt.Sprintf("%s hundred", hundreds)
+		}
 	}
 }
 
