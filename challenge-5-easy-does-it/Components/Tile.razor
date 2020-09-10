@@ -1,0 +1,43 @@
+@using challenge_5_easy_does_it.Enums;
+
+<img height="@sideLength" src="@getImageUrl()" />
+
+@code {
+    [Parameter]
+    public int sideLength { get; set; } = 50;
+
+    [Parameter]
+    public TileType tileType { get; set; } = TileType.Empty;
+
+    [Parameter]
+    public bool robot { get; set; } = false;
+
+    protected string getImageUrl()
+    {
+        switch (robot)
+        {
+            case true:
+                switch (tileType)
+                {
+                    case TileType.Exit:
+                        return "images/exit_robot.png";
+                    case TileType.Mine:
+                        return "images/exit_mine.png";
+                    default:
+                        return "images/empty_robot.png";
+                }
+            case false:
+                switch (tileType)
+                {
+                    case TileType.Exit:
+                        return "images/exit.png";
+                    case TileType.Mine:
+                        return "images/mine.png";
+                    case TileType.Wall:
+                        return "images/wall.png";
+                    default:
+                        return "images/empty.png";
+                }
+        }
+    }
+}
