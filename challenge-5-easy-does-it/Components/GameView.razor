@@ -1,0 +1,18 @@
+@using challenge_5_easy_does_it.Classes;
+
+<div
+    @onkeypress="@HandleKeyPress"
+    tabindex="0"
+>
+
+</div>
+
+@code {
+    [Parameter]
+    public Game gameState { get; set; }
+
+    protected void HandleKeyPress(KeyboardEventArgs e)
+    {
+        Console.WriteLine($"Pressed: [{e.Key}]");
+    }
+}
