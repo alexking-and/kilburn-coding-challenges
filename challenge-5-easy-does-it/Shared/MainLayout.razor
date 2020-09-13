@@ -1,15 +1,10 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="sidebar">
-    <NavMenu />
-</div>
-
 <div class="main">
-    <div class="top-row px-4">
-        <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
-    </div>
-
-    <div class="content px-4">
+    <div class="content">
         @Body
+    </div>
+    <div class="footer">
+        Created by Alex King. Check out the code on <a href="https://github.com/alexking-and/kilburn-coding-challenges/tree/master/challenge-5-easy-does-it">Github</a>!
     </div>
 </div>

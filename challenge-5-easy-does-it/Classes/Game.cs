@@ -16,15 +16,22 @@ namespace challenge_5_easy_does_it.Classes
             }
         };
         public WinState winState;
+        private Coord initialPosition;
 
         public Game(string boardFilePath, HttpClient httpClient) {
             winState = WinState.InProgress;
             populateBoard(boardFilePath, httpClient);
         }
 
+        public void ResetGame() {
+            boardState.robotPos = initialPosition;
+            winState = WinState.InProgress;
+        }
+
         private async void populateBoard(string boardFilePath, HttpClient httpClient)
         {
             boardState = await BoardGenerator.FromFile(boardFilePath, httpClient);
+            initialPosition = boardState.robotPos;
         }
 
         public void MakeMove(MoveDirection direction) {
@@ -62,6 +69,8 @@ namespace challenge_5_easy_does_it.Classes
         }
 
         private bool IsMoveValid(MoveDirection direction) {
+            if (winState == WinState.Win || winState == WinState.Lose) return false;
+
             int newX = boardState.robotPos.x;
             int newY = boardState.robotPos.y;
             int numColumns = boardState.board.Count;

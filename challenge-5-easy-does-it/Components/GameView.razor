@@ -4,26 +4,42 @@
 
 @inject IJSRuntime js;
 
-<button type="button" @onclick=@FocusBoard>start</button>
+<div class="control-buttons">
+    <button type="button" @onclick=@FocusBoard>Load Game</button>
+    <button type="button" @onclick=@ResetGame>Reset</button>
+</div>
 <div
     @onkeydown=@HandleKeyPress
     tabindex="0"
     id="game-board"
 >
-    @for (var x = 0; x < game.boardState.board.Count; x++) {
-        var column = game.boardState.board[x];
-        <div class="game-board-col">
-            @for (var y = 0; y < game.boardState.board[0].Count; y++) {
-                var tile = game.boardState.board[x][y];
-                <Tile sideLength=25 tileType=tile robot=@HasRobot(x,y) />
-            }
-        </div>
-    }
+        @for (var x = 0; x < game.boardState.board.Count; x++) {
+            var column = game.boardState.board[x];
+            <div class="game-board-col">
+                @for (var y = 0; y < game.boardState.board[0].Count; y++) {
+                    var tile = game.boardState.board[x][y];
+                    Console.WriteLine(tileSideLength);
+                    <Tile sideLength=tileSideLength tileType=tile robot=@HasRobot(x,y) winState=@game.winState />
+                }
+            </div>
+        }
 </div>
+@if (game.winState == WinState.Lose)
+{
+    <h4>You blew up :(</h4>
+    <h6>Press the reset button to try again.</h6>
+}
+@if (game.winState == WinState.Win)
+{
+    <h4>Congratulations!</h4>
+    <h6>You made it through!</h6>
+}
 
 @code {
     [Parameter]
     public Game game { get; set; }
+
+    protected int tileSideLength { get; set; }
 
     protected void HandleKeyPress(KeyboardEventArgs e)
     {
@@ -46,7 +62,14 @@
         }
     }
 
-    protected bool HasRobot(int x, int y) {
+    protected async Task ResetGame() 
+    {
+        game.ResetGame();
+        await FocusBoard();
+    }
+
+    protected bool HasRobot(int x, int y) 
+    {
         Coord tileCoords = new Coord {
             x = x,
             y = y
@@ -55,6 +78,19 @@
     }
 
     protected async Task FocusBoard() {
+        tileSideLength = await CalculateTileSideLength();
         await js.InvokeVoidAsync("focusBoard");
+    }
+
+    protected async Task<int> CalculateTileSideLength() 
+    {
+        int maxWidth = await js.InvokeAsync<int>("getWindowWidth") - 60;
+        int maxHeight = (int)(await js.InvokeAsync<int>("getWindowHeight") * 0.65);
+
+        if (game.boardState.board.Count < 1) return 0;
+
+        int maxWidthPerTile = maxWidth / game.boardState.board.Count;
+        int maxHeightPerTile = maxHeight / game.boardState.board[0].Count;
+        return Math.Min(maxWidthPerTile, maxHeightPerTile);
     }
 }

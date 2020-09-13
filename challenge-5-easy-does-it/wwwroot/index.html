@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <app onload="focusGameBoard()">Loading...</app>
+    <app>Loading...</app>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -21,10 +21,7 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="_content/BlazorStrap/blazorStrap.js"></script>
-    
-    <script>
-        window.focusBoard = () => document.getElementById("game-board").focus();
-    </script>
+    <script src="js/domUtils.js"></script>
 </body>
 
 </html>

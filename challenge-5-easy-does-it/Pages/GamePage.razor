@@ -1,0 +1,21 @@
+@page "/";
+
+@inject HttpClient _client;
+
+@using challenge_5_easy_does_it.Classes;
+@using challenge_5_easy_does_it.Components;
+@using challenge_5_easy_does_it.Enums;
+
+<h1>Robot Maze Game</h1>
+<h6>Play using the arrow keys. Click in the game area if it's not working.</h6>
+<GameView game=@game />
+
+@code {
+    protected Game game;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        game = new Game("data/map.txt", _client);
+    }
+}

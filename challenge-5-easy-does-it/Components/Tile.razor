@@ -12,6 +12,9 @@
     [Parameter]
     public bool robot { get; set; } = false;
 
+    [Parameter]
+    public WinState winState { get; set; } = WinState.InProgress;
+
     protected string getImageUrl()
     {
         switch (robot)
@@ -33,6 +36,11 @@
                         return "images/exit.png";
                     case TileType.Wall:
                         return "images/wall.png";
+                    case TileType.Mine:
+                        if (winState == WinState.Win) {
+                            return "images/mine.png";
+                        }
+                        return "images/empty.png";
                     default:
                         return "images/empty.png";
                 }
