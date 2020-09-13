@@ -1,6 +1,6 @@
 @using challenge_5_easy_does_it.Enums;
 
-<img height="@sideLength" src="@getImageUrl()" />
+<img class="game-tile" height="@sideLength" src="@getImageUrl()" />
 
 @code {
     [Parameter]
@@ -22,7 +22,7 @@
                     case TileType.Exit:
                         return "images/exit_robot.png";
                     case TileType.Mine:
-                        return "images/exit_mine.png";
+                        return "images/mine_robot.png";
                     default:
                         return "images/empty_robot.png";
                 }
@@ -31,8 +31,6 @@
                 {
                     case TileType.Exit:
                         return "images/exit.png";
-                    case TileType.Mine:
-                        return "images/mine.png";
                     case TileType.Wall:
                         return "images/wall.png";
                     default:

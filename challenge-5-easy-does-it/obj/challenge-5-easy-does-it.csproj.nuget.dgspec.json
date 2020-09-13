@@ -36,6 +36,10 @@
       "frameworks": {
         "netstandard2.1": {
           "dependencies": {
+            "BlazorStrap": {
+              "target": "Package",
+              "version": "[1.3.3-Preview-04, )"
+            },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
               "version": "[3.2.1, )"

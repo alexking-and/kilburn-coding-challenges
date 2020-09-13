@@ -1,7 +1,21 @@
 ﻿@page "/"
 
+@inject HttpClient _client;
+
+@using challenge_5_easy_does_it.Classes;
+@using challenge_5_easy_does_it.Components;
+
 <h1>Hello, world!</h1>
+<GameView game=@game />
 
 Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code {
+    private Game game;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        game = new Game("data/map.txt", _client);
+    }
+}

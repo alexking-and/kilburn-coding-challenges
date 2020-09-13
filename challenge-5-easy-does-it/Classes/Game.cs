@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net.Http;
 
 using challenge_5_easy_does_it.Enums;
 using challenge_5_easy_does_it.Structs;
@@ -7,12 +8,23 @@ namespace challenge_5_easy_does_it.Classes
 {
     public class Game
     {
-        public BoardState boardState;
+        public BoardState boardState = new BoardState {
+            board = new List<List<TileType>>(),
+            robotPos = {
+                x = -1,
+                y = -1
+            }
+        };
         public WinState winState;
 
-        public Game(string boardFilePath) {
-            boardState = BoardGenerator.FromFile(boardFilePath);
+        public Game(string boardFilePath, HttpClient httpClient) {
             winState = WinState.InProgress;
+            populateBoard(boardFilePath, httpClient);
+        }
+
+        private async void populateBoard(string boardFilePath, HttpClient httpClient)
+        {
+            boardState = await BoardGenerator.FromFile(boardFilePath, httpClient);
         }
 
         public void MakeMove(MoveDirection direction) {
@@ -30,7 +42,7 @@ namespace challenge_5_easy_does_it.Classes
                     boardState.robotPos.x--;
                     break;
                 case MoveDirection.Right:
-                    boardState.robotPos.y--;
+                    boardState.robotPos.x++;
                     break;
                 default:
                     break;

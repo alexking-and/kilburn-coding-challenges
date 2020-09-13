@@ -1,18 +1,60 @@
 @using challenge_5_easy_does_it.Classes;
+@using challenge_5_easy_does_it.Enums;
+@using challenge_5_easy_does_it.Structs;
 
+@inject IJSRuntime js;
+
+<button type="button" @onclick=@FocusBoard>start</button>
 <div
-    @onkeypress="@HandleKeyPress"
+    @onkeydown=@HandleKeyPress
     tabindex="0"
+    id="game-board"
 >
-
+    @for (var x = 0; x < game.boardState.board.Count; x++) {
+        var column = game.boardState.board[x];
+        <div class="game-board-col">
+            @for (var y = 0; y < game.boardState.board[0].Count; y++) {
+                var tile = game.boardState.board[x][y];
+                <Tile sideLength=25 tileType=tile robot=@HasRobot(x,y) />
+            }
+        </div>
+    }
 </div>
 
 @code {
     [Parameter]
-    public Game gameState { get; set; }
+    public Game game { get; set; }
 
     protected void HandleKeyPress(KeyboardEventArgs e)
     {
-        Console.WriteLine($"Pressed: [{e.Key}]");
+        Console.WriteLine($"Pressed: [{e.Key}, {e.Code}]");
+
+        switch (e.Code)
+        {
+            case "ArrowUp":
+                game.MakeMove(MoveDirection.Up);
+                break;
+            case "ArrowDown":
+                game.MakeMove(MoveDirection.Down);
+                break;
+            case "ArrowLeft":
+                game.MakeMove(MoveDirection.Left);
+                break;
+            case "ArrowRight":
+                game.MakeMove(MoveDirection.Right);
+                break;
+        }
+    }
+
+    protected bool HasRobot(int x, int y) {
+        Coord tileCoords = new Coord {
+            x = x,
+            y = y
+        };
+        return tileCoords.Equals(game.boardState.robotPos);
+    }
+
+    protected async Task FocusBoard() {
+        await js.InvokeVoidAsync("focusBoard");
     }
 }

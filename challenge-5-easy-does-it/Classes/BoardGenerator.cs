@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System;
 
 using challenge_5_easy_does_it.Enums;
 using challenge_5_easy_does_it.Structs;
@@ -7,43 +10,51 @@ namespace challenge_5_easy_does_it.Classes
 {
     public class BoardGenerator
     {
-        public static BoardState FromFile(string filePath)
+        public static async Task<BoardState> FromFile(string filePath, HttpClient httpClient)
         {
-            string[] lines = System.IO.File.ReadAllLines(filePath);
+            Console.WriteLine("Pulling map from file...");
+
+            string mapString = await httpClient.GetStringAsync(filePath);
+            string[] lines = mapString.Split("\n");
+            List<char[]> charLines = new List<char[]>();
+            for (var i = 0; i < lines.Length - 1; i++)
+            {
+                charLines.Add(lines[i].ToCharArray());
+            }
 
             List<List<TileType>> board = new List<List<TileType>>();
             Coord robotPos = new Coord();
-            int colIndex = 0;
-            int rowIndex = 0;
-            foreach (string line in lines)
+
+            for (var i = 0; i < charLines[0].Length; i++)
             {
-                foreach (char c in line)
-                {
-                    switch (c)
+                List<TileType> column = new List<TileType>();
+                for (var j = 0; j < charLines.Count; j++) {
+                    switch (lines[j][i])
                     {
                         case '+':
-                            board[colIndex][rowIndex] = TileType.Wall;
+                            column.Add(TileType.Wall);
                             break;
                         case 'E':
-                            board[colIndex][rowIndex] = TileType.Exit;
+                            column.Add(TileType.Exit);
                             break;
                         case '^':
-                            board[colIndex][rowIndex] = TileType.Mine;
+                            column.Add(TileType.Mine);
                             break;
                         case 'R':
-                            board[colIndex][rowIndex] = TileType.Empty;
-                            robotPos.x = colIndex;
-                            robotPos.y = rowIndex;
+                            column.Add(TileType.Empty);
+                            robotPos.x = i;
+                            robotPos.y = j;
                             break;
                         default:
-                            board[colIndex][rowIndex] = TileType.Empty;
+                            column.Add(TileType.Empty);
                             break;
                     }
-                    colIndex++;
                 }
-                rowIndex++;
-                colIndex = 0;
+                board.Add(column);
             }
+
+            Console.WriteLine($"Board initialised with shape {board.Count}x{board[0].Count}");
+            Console.WriteLine($"Initial robot position set to ({robotPos.x}, {robotPos.y})");
 
             return new BoardState {
                 board = board,
