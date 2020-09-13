@@ -20,4 +20,6 @@ Character | Meaning
 
 I intended to do the next challenge in C#/.NET regardless since I wanted to bring myself up to speed on it for client work, but since this is clearly a front-end challenge, why not throw some new web technologies like Blazor and WebAssembly into the mix?
 
-I'll be doing a lot out of my comfort zone on this one, trying to learn C# and Blazor as well as attempting to utilise OOP paterns to separate logic and presentation, so how sophisticated I can make this will depend on how effectively I can pick up these technologies.
+I was doing a lot out of my usual zone on this one, trying to learn C# and Blazor as well as attempting to utilise OOP paterns to separate logic and presentation, so I could only make this so sophisticated without spending too much time on it. However, I've got to say I was *really* impressed with Blazor and how quick it was to understand and get running. The .NET CLI tools skaffold a simple app with examples of how Blazor works, and the component model and the way the code works in general was really easy to pick up. I'm happy with how this one went!
+
+If you have .NET Core installed, you can run using `dotnet run` and see the game in action at http://localhost:5000
