@@ -5,10 +5,10 @@ events { }
          application/wasm wasm;
        }
      server {
-        listen 80;
+        listen $PORT;
         index index.html;
         location / {
-           root /var/www/web;
+           root /usr/share/nginx/html;
            try_files $uri $uri/ /index.html =404;
         }
      }
