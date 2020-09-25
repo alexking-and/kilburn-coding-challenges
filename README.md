@@ -7,3 +7,4 @@ Challenge | Technologies Used
 [#3: Eleven?](challenge-3-eleven) | Alexa, TensorFlow, Truffle/Ethereum/Solidity
 [#4: Sharing is Caring](challenge-4-sharing-is-caring) | Go
 [#5: Easy Does It](challenge-5-easy-does-it) | Blazor, C#, .NET Core, WebAssembly
+~~[#6: It Looks Like You're Trying to Type a Letter](challenge-6-it-looks-like-youre-trying-to-type-a-letter)~~ | ~~C, WebAssembly, Vue/Angular~~
