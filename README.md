@@ -8,3 +8,4 @@ Challenge | Technologies Used
 [#4: Sharing is Caring](challenge-4-sharing-is-caring) | Go
 [#5: Easy Does It](challenge-5-easy-does-it) | Blazor, C#, .NET Core, WebAssembly
 ~~[#6: It Looks Like You're Trying to Trype a Letter](challenge-6-it-looks-like-youre-trying-to-trype-a-letter)~~ | ~~C, WebAssembly, Vue/Angular~~
+[#7: Mirror Mirror](challenge-7-mirror-mirror) | TBD
