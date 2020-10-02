@@ -1,4 +1,4 @@
-# Challenge 6 - It Looks Like You're Trying to Type a Letter
+# Challenge 6 - It Looks Like You're Trying to Trype a Letter
 
 ## Problem
 We're all familiar with red squiggly lines when we make typing mistakes in some of the more popular text editors.
