@@ -11,4 +11,6 @@ The word to be decoded is `TmixcmCZhxDmrmoaQhxhzmfCDnohyehhxW`.
 The winning solution will be one that is clean and makes good use of language features, with extra kudos given for visualising the process.
 
 ## Solution
-Initial thinking: fuck it, OCaml.
+I wanted to give myself a break from the useful solutions, so I figured it was time to whip out an obscure functional language I haven't touched for 5 years; this actually worked out surprisingly great: the problem fit very well into a functional context, and concept-wise OCaml is very similar to Haskell.
+
+Use your OCaml tools of choice to build and run, the easiest would be either `ocaml mirror.ml` or `ocamlc -c mirror.mli && ocamlc mirror.ml -o mirror && ./mirror`.
