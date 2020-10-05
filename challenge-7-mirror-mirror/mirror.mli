@@ -6,7 +6,14 @@ type mirror = {
     loc: location;
 }
 
-val translate_char : char -> location list -> char
+(* char to translate -> list of mirrors -> translated char  *)
+val translate_char : char -> mirror list -> char
+
+(* string to translate -> translated string *)
 val translate_string : string -> string
-val move : location -> direction -> location list -> location
+
+(* current location -> current direction -> list of mirrors -> next location and direction *)
+val move : location * direction -> mirror list -> location * direction
+
+(* current direction -> mirror -> next direction *)
 val reflect : direction -> mirror -> direction
