@@ -10,8 +10,8 @@ val translate_char : char -> char
 (* string to translate -> translated string *)
 val translate_string : string -> string
 
-(* current location -> current direction -> next location and direction *)
-val move : location * direction -> location * direction
+(* current location -> current direction -> translated char *)
+val move : location -> direction -> char
 
 (* current direction -> mirror -> next direction *)
 val reflect : direction -> mirror -> direction
