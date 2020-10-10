@@ -4,13 +4,13 @@ type location = int * int
 type edgenode = char * location * direction
 type mirror = angle * location
 
-(* char to translate -> translated char  *)
-val translate_char : char -> char
+(* char to decode -> decoded char  *)
+val decode_char : char -> char
 
-(* string to translate -> translated string *)
-val translate_string : string -> string
+(* string to decode -> decoded string *)
+val decode_string : string -> string
 
-(* current location -> current direction -> translated char *)
+(* current location -> current direction -> decoded char *)
 val move : location -> direction -> char
 
 (* current direction -> mirror -> next direction *)
