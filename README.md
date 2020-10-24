@@ -9,4 +9,4 @@ Challenge | Technologies Used
 [#5: Easy Does It](challenge-5-easy-does-it) | Blazor, C#, .NET Core, WebAssembly
 ~~[#6: It Looks Like You're Trying to Trype a Letter](challenge-6-it-looks-like-youre-trying-to-trype-a-letter)~~ | ~~C, WebAssembly, Vue/Angular~~
 [#7: Mirror Mirror](challenge-7-mirror-mirror) | OCaml
-[#8: Logo Loco](challenge-8-logo-loco) | TBD
+[#8: Logo Loco](challenge-8-logo-loco) | C

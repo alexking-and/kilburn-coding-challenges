@@ -28,4 +28,7 @@ TOPGUN
 In the above example, your program will extract the words `TOPGUN`, `AVIATION` and `SERVICES`, in no particular order.
 
 ## Solution
-No special language features will be needed for this so I can use whatever I like. I could get a big language like Java out of the way, but that's not going to be concise. Rust would be ideal for this but I want to avoid repeating a language if I can.
+Another attempt at C! This problem was a lot simpler, and I'd learnt a lot of lessons from last time, so this went fairly smoothly.
+Runs lightning fast, the code is nice and clean, but ugh C is such a pain and I could get results almost as effective in half the time using Rust.
+
+To run, compile with your C tools of choice (e.g. `gcc logo_decoder.c -o logo`) and run with the name of the logo file (e.g. `./logo ./data/logo1.txt`).
