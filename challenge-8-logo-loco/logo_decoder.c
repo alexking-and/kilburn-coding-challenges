@@ -1,56 +1,107 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define MAX_LINE_COUNT 16
 #define MAX_LINE_LENGTH 16
 
 typedef struct node {
     char *value;
-    node *next;
+    struct node *next;
 } node;
 
-int main(int argc, char **argv) {
-    char *filepaths[5] = {"./data/logo1.txt", "./data/logo2.txt", "./data/logo3.txt", "./data/logo4.txt", "./data/logo5.txt"};
-
-    for (int i = 0; i < 5; i++) {
-        node *current = extract_words(read_logo(filepaths[i]));
-
-        printf("Words found in %s: ", filepaths[i]);
-        while (current != NULL) {
-            printf("%s, ", current->value);
-            current = current->next;
-        }
-        printf("\n");
-    }
-    
-    printf("\n");
-}
-
-char **read_logo(char *filepath) {
+void read_logo(char buf[MAX_LINE_COUNT][MAX_LINE_LENGTH], char *filepath) {
     FILE *fp;
     char c;
-    int i, j;
-    char logo[MAX_LINE_COUNT][MAX_LINE_LENGTH];
+    int i, j = 0;
     
-    fp = fopen(filepath, 'r');
+    fp = fopen(filepath, "r");
     c = getc(fp);
     while (c != EOF) {
         if (c == '\n') {
-            i = 0;
-            j++;
-        } else {
-            logo[i][j] = c;
+            j = 0;
             i++;
+        } else {
+            buf[i][j] = c;
+            j++;
         }
         c = getc(fp);
     }
-
-    return logo;
 }
 
-node *extract_words(char **logo) {
-    /*
-        Keep linked list of words
-        scan both horizontally and vertically
-        If >2 chars next to each other, whole sequence is a word
-    */
+node *add_word_to_list(node *list, char word[MAX_LINE_LENGTH]) {
+    node *new_head = malloc(sizeof(node));
+    new_head->value = malloc(sizeof(char[MAX_LINE_LENGTH]));
+    strncpy(new_head->value, word, MAX_LINE_LENGTH);
+    new_head->next = list;
+    list = new_head;
+    return list;
+}
+
+node *extract_words(char logo[MAX_LINE_COUNT][MAX_LINE_LENGTH]) {
+    node *words = NULL;
+    char current_word[MAX_LINE_LENGTH];
+    int current_word_length = 0;
+    char c;
+
+    // Horizontal
+    for (int row = 0; row < MAX_LINE_COUNT; row++) {
+        for (int col = 0; col < MAX_LINE_LENGTH; col++) {
+            c = logo[row][col];
+            if (c == ' ' || c == '\0' || c == '\n') {
+                if (current_word_length > 2) {
+                    words = add_word_to_list(words, current_word);
+                }
+                current_word_length = 0;
+                memset(current_word, '\0', 16);
+            } else {
+                current_word[current_word_length] = c;
+                current_word_length++;
+            }
+        }
+    }
+
+    // Vertical
+    for (int col = 0; col < MAX_LINE_LENGTH; col++) {
+        for (int row = 0; row < MAX_LINE_COUNT; row++) {
+            c = logo[row][col];
+            if (c == ' ' || c == '\0' || c == '\n') {
+                if (current_word_length > 2) {
+                    words = add_word_to_list(words, current_word);
+                }
+                current_word_length = 0;
+                memset(current_word, '\0', 16);
+            } else {
+                current_word[current_word_length] = c;
+                current_word_length++;
+            }
+        }
+    }
+
+    return words;
+}
+
+int main(int argc, char **argv) {
+    if (argc != 2) {
+        printf("Usage: %s <path_to_logo_file>\n", argv[0]);
+        return 0;
+    }
+
+    char *filepath = argv[1];
+    char logo[MAX_LINE_COUNT][MAX_LINE_LENGTH] = { '\0' };
+    read_logo(logo, filepath);
+    node *current = extract_words(logo);
+    node *temp;
+
+    printf("Words found in %s: ", filepath);
+    while (current != NULL) {
+        printf("%s, ", current->value);
+        temp = current->next;
+        free(current);
+        current = temp;
+    }
+    printf("\n");
+    free(temp);
+
+    return 0;
 }
