@@ -1,4 +1,4 @@
-# Challenge 6 - Mirror Mirror
+# Challenge 8 - Logo Loco
 
 ## Problem
 You work for Acme LogoWorks' design department and your team have just ended a brainstorming session by saving all of the new client logos they've come up with in ASCII format - because this is a standard practice*.
