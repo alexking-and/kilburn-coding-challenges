@@ -10,3 +10,4 @@ Challenge | Technologies Used
 ~~[#6: It Looks Like You're Trying to Trype a Letter](challenge-6-it-looks-like-youre-trying-to-trype-a-letter)~~ | ~~C, WebAssembly, Vue/Angular~~
 [#7: Mirror Mirror](challenge-7-mirror-mirror) | OCaml
 [#8: Logo Loco](challenge-8-logo-loco) | C
+[#9: Blockbusters](challenge-9-blockbusters) | Unity, Oculus, C#
