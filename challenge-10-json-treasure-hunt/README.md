@@ -28,5 +28,5 @@ interests(id:2)
 ```
 
 ## Solution
-TBD.
-JS would make this way too easy; maybe Java?
+This was a relaxing one after the last challenge. 
+I planned to use Java to brush up my classical OOP skills, but it turns out Java's leaned more into the functional side since the last time I used it, so I basically did it like any other functional solution.
